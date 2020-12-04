@@ -41,7 +41,7 @@
    
      
    
-     ![事件循环](https://github.com/haiyangpan/summary/tree/main/image/eventLoop.png)
+     <img src="./image/eventLoop.png" alt="事件循环"  />
    
      宏任务一般是：包括整体代码script，setTimeout，setInterval。
    
@@ -85,7 +85,7 @@
 
    https://segmentfault.com/a/1190000008010666
 
-   ![生命周期钩子](https://github.com/haiyangpan/summary/tree/main/image/lifecycle.png)
+   ![生命周期钩子](./image/lifecycle.png)
 
    | 钩子          | 逻辑                                                         |
    | ------------- | :----------------------------------------------------------- |
@@ -163,7 +163,7 @@
 
     适用场景：一个数据受多个数据影响。computed是有缓存的，如果依赖的数据没有发生变化，会直接从缓存中取值。
 
-    适用场景：![computed适用场景](https://github.com/haiyangpan/summary/tree/main/image/computed.png)
+    适用场景：![computed适用场景](./image/computed.png)
 
     
 
@@ -173,17 +173,38 @@
 
     data和computed中没有相应的属性，不能使用watch。
 
-    适用场景：![watch适用场景](https://github.com/haiyangpan/summary/tree/main/image/watch.png)
+    适用场景：![watch适用场景](./image/watch.png)
 
     **methods**：方法只要调用，就会执行一次，需要特定的触发条件。不会缓存。
 
-12. template render函数和jsx的使用
+12. el template render函数和jsx的使用
+
+    当Vue选项对象中有render渲染函数时，Vue构造函数将直接使用渲染函数渲染DOM树;
+
+    当选项对象中没有render渲染函数时，Vue构造函数首先通过将template模板编译生成渲染函数，然后再渲染DOM树;
+
+    而当Vue选项对象中既没有render渲染函数，也没有template模板时，会通过el属性获取挂载元素的outerHTML来作为模板，并编译生成渲染函数。
+    换言之，在进行DOM树的渲染时，**优先级：** render渲染函数 > template且需编译成渲染函数 > el属性获取挂载元素的outerHTML（el对应的元素存在，前两者均不存在时）
+
+    __________
+
+    jsx使用需要和render一起使用，适合控制渲染逻辑的组件使用，比如循环、判断使用jsx，使用函数式组件可以提高性能。而template更简洁直观。[使用](https://blog.csdn.net/weixin_41849462/article/details/90676168)
 
 13. data、props区别，合理划分两者界限
 
+    理论上，data 是私有的，仅供组件本身使用；props是由上而下传递的组件属性。
+
+    [Vue 中的 Props 与 Data 细微差别，你知道吗](https://segmentfault.com/a/1190000021651417)
+
 14. name属性具体应用
 
+    1. 递归组件运用（指组件自身组件调用自身组件）
+    2. keep-alive包裹动态组件时，会缓存不活动的组件实例，会出现include和exclude属性，包含或者排除指定name组件
+    3. vue-tools插件调试
+
 15. keep alive作用
+
+    用于vue组件的缓存 [keep-alive](https://www.cnblogs.com/lxlin/p/8472395.html)
 
 16. vue项目实现动画的几种方式
 
@@ -228,20 +249,55 @@
 ## React框架
 
 1. 单项数据流
+
 2. redux/react-redux
+
 3. 有状态组件和无状态组件的差别
+
 4. hooks
+
 5. 生命周期钩子
+
 6. react性能优化（如何避免子组件频繁渲染）
-7. react-router/react-route
+
+   shouldComponentUpdate的使用
+
+7. react-router/react-router-dom
+
 8. react虚拟dom的理解以及工作原理
+
 9. diff算法
+
 10. jsx语法
+
 11. 声明式编程、命令式编程、函数式编程
+
 12. 错误边界
+
 13. context的理解
+
 14. react和vue对比差异、优缺点
+
 15. 在react和vue中如何选择使用项目开发的框架
+
+16. 直接赋值给state和使用setState的区别
+
+    直接修改state，并没有驱动组件进行重新渲染；而this.setState()函数首先改变this.state的值，然后驱动组件经历更新过程。
+
+17. react中prop和state的区别
+
+    1. prop 用于外部接口，state 用于记录内部状态；
+    2. prop 的赋值在外部世界使用组件时，state的赋值在组件内部；
+    3. 组件不应该改变prop的值，而state存在的目的就是让组件来改变的。
+
+18. react组件需要构造函数(constructor)的目的
+
+    1. 初始化state 
+    2. 绑定成员函数的this环境。
+
+19. react 组件之间通信
+
+    [组件通信](https://www.jianshu.com/p/fb915d9c99c4)
 
 [React面试知识点](https://segmentfault.com/a/1190000019339210)
 
